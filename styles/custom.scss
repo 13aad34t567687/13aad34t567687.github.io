@@ -5,39 +5,107 @@
    "Warm, Editorial, Intelligent"
    ========================================== */
 
-/* === 1. 核心排版 (Typography) === */
+/* === 1. 核心变量 (Variables) === */
 :root {
-  --font-header: 'Noto Sans SC', 'Inter', sans-serif;
-  --font-body: 'Noto Sans SC', 'Inter', sans-serif;
-  --font-code: 'Fira Code', monospace;
+  /* 颜色变量 - Light Mode (User Specified) */
+  --light: #fbfbfa;
+  --lightgray: #f0f0f0;
+  --gray: #b0b0b0;
+  --darkgray: #4a4a4a;
+  --dark: #2d2d2d;
+  --secondary: #d97757;
+  --tertiary: #e08e79;
+  --highlight: #d977571a;
+  --textHighlight: #d9775733;
 
-  /* 颜色变量映射 */
-  --bg-paper: #FBFBFA;
-  --bg-slate: #1A1918;
-  --text-charcoal: #2D2D2D;
-  --text-offwhite: #EBEAEC;
-  --accent-terracotta: #D97757;
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-subtle-dark: rgba(255, 255, 255, 0.08);
+  /* 字体变量 (User Specified) */
+  --titleFont: "Noto Sans SC", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --headerFont: "Noto Sans SC", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --bodyFont: "Noto Sans SC", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --codeFont: "Fira Code", ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+}
+
+/* Dark Mode Overrides (Keeping consistent with Warm Editorial theme but mapping to new vars if needed) */
+:root[saved-theme="dark"] {
+  --light: #1A1918;
+  --lightgray: #2A2928;
+  --gray: #888888;
+  --darkgray: #C0C0C0;
+  --dark: #EBEAEC;
+  --secondary: #D97757;
+  --tertiary: #E08E79;
+  --highlight: rgba(217, 119, 87, 0.15);
+  --textHighlight: rgba(217, 119, 87, 0.2);
+}
+
+/* === 2. 全局样式 (Global Styles) === */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  text-size-adjust: none;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: var(--font-body);
-  color: var(--dark);
+  box-sizing: border-box;
   background-color: var(--light);
-  line-height: 1.7;
-  /* 增加行高，提升阅读体验 */
+  font-family: var(--bodyFont);
+  color: var(--darkgray);
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 文本排版 */
+p,
+ul,
+text,
+a,
+tr,
+td,
+li,
+ol,
+.katex,
+.math,
+.typst-doc,
+.typst-doc * {
+  color: var(--darkgray);
+  fill: var(--darkgray);
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+tbody,
+li,
+p {
+  line-height: 1.6rem;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+/* 选中态 */
+::selection {
+  background: color-mix(in srgb, var(--tertiary) 60%, #fff0);
+  color: var(--darkgray);
+}
+
+/* 标题 */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-header);
+  font-family: var(--headerFont);
   font-weight: 700;
   color: var(--dark);
   margin-top: 2em;
@@ -51,23 +119,21 @@ h1 {
   margin-bottom: 1rem;
 }
 
-/* === 2. 极简布局 (Minimalist Layout) === */
+/* === 3. 极简布局 (Minimalist Layout) === */
 .page {
   max-width: 800px;
-  /* 限制内容宽度，模拟书籍排版 */
   margin: 0 auto;
   padding: 4rem 2rem;
 }
 
-/* 去除所有背景装饰，回归纯粹 */
 body::before,
 body::after {
   display: none;
 }
 
-/* === 3. 优雅组件 (Elegant Components) === */
+/* === 4. 组件样式 (Component Styles) === */
 
-/* 卡片 - 极简边框，无阴影 */
+/* 卡片 */
 article,
 .card {
   background: transparent;
@@ -80,7 +146,7 @@ article,
 
 :root[saved-theme="dark"] article,
 :root[saved-theme="dark"] .card {
-  border-color: var(--border-subtle-dark);
+  border-color: rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
 }
 
@@ -88,7 +154,7 @@ article:hover {
   border-color: var(--secondary);
 }
 
-/* 链接 - 优雅的下划线 */
+/* 链接 */
 a {
   color: var(--secondary);
   text-decoration: none;
@@ -101,19 +167,19 @@ a:hover {
 }
 
 a.internal {
-  background: rgba(217, 119, 87, 0.1);
+  background: var(--highlight);
   padding: 0 0.2em;
   border-radius: 4px;
   border-bottom: none;
 }
 
 a.internal:hover {
-  background: rgba(217, 119, 87, 0.2);
+  background: var(--textHighlight);
 }
 
-/* 标签 - 朴素风格 */
+/* 标签 */
 .tag {
-  font-family: var(--font-body);
+  font-family: var(--bodyFont);
   font-size: 0.85rem;
   padding: 0.2em 0.8em;
   border-radius: 4px;
@@ -128,8 +194,9 @@ a.internal:hover {
   color: var(--light);
 }
 
-/* 代码块 - 干净整洁 */
+/* 代码块 */
 pre {
+  font-family: var(--codeFont);
   background: var(--lightgray) !important;
   border-radius: 6px;
   padding: 1.5rem;
@@ -141,19 +208,19 @@ pre {
   background: #2A2928 !important;
 }
 
-/* 引用块 - 侧边线条 */
+/* 引用块 */
 blockquote {
   border-left: 3px solid var(--secondary);
   background: transparent;
   padding: 0.5rem 0 0.5rem 1.5rem;
   margin: 2rem 0;
-  font-family: var(--font-header);
+  font-family: var(--headerFont);
   font-style: italic;
   color: var(--darkgray);
   font-size: 1.1em;
 }
 
-/* 列表 - 增加间距 */
+/* 列表 */
 ul,
 ol {
   padding-left: 1.5rem;
@@ -162,17 +229,6 @@ ol {
 li {
   margin-bottom: 0.5rem;
   padding-left: 0.5rem;
-}
-
-/* === 4. 移动端适配 === */
-@media (max-width: 768px) {
-  .page {
-    padding: 2rem 1.5rem;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
 }
 
 /* === 5. 优雅显现动画 (Elegant Text Reveal) === */
@@ -188,31 +244,25 @@ li {
   }
 }
 
-/* 确保动画只在页面加载时播放一次，且不影响后续交互 */
+/* 确保动画只在页面加载时播放一次 */
 .center,
 .sidebar {
-  /* 建立层叠上下文 */
   position: relative;
 }
 
-/* 标题 - 立即显现 */
 h1,
 .page-title {
   animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   will-change: transform, opacity;
 }
 
-/* 标签/元数据 - 稍后 */
 .tags,
 .content-meta {
   animation: revealUp 0.8s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   opacity: 0;
-  /* 初始隐藏，防止闪烁 */
   will-change: transform, opacity;
 }
 
-/* 正文 - 再后 */
-/* 使用更通用的选择器，避免 .page > article 匹配不到的情况 */
 article,
 .popover-hint {
   animation: revealUp 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
@@ -220,7 +270,6 @@ article,
   will-change: transform, opacity;
 }
 
-/* 侧边栏 - 最后 */
 .sidebar-left,
 .sidebar-right {
   animation: revealUp 1s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
@@ -228,7 +277,6 @@ article,
   will-change: transform, opacity;
 }
 
-/* 移动端优化：减少位移，避免晕动 */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -239,5 +287,16 @@ article,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
     opacity: 1 !important;
+  }
+}
+
+/* === 6. 移动端适配 === */
+@media (max-width: 768px) {
+  .page {
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
   }
 }
