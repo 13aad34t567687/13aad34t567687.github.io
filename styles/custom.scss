@@ -42,50 +42,6 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  text-size-adjust: none;
-  width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  box-sizing: border-box;
-  background-color: var(--light);
-  font-family: var(--bodyFont);
-  color: var(--darkgray);
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 文本排版 */
-p,
-ul,
-text,
-a,
-tr,
-td,
-li,
-ol,
-.katex,
-.math,
-.typst-doc,
-.typst-doc * {
-  color: var(--darkgray);
-  fill: var(--darkgray);
-  overflow-wrap: break-word;
-  text-wrap: pretty;
-}
-
-tbody,
-li,
-p {
-  line-height: 1.6rem;
-}
-
-p {
-  display: block;
-  margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
