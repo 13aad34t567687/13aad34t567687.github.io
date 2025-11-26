@@ -76,6 +76,29 @@ chmod +x deploy.sh
 
 ---
 
+## ⚡ 快速部署到 Cloudflare Pages
+
+### 方法一：使用部署脚本（推荐）
+
+#### Windows (PowerShell)
+```powershell
+.\deploy-cloudflare.ps1
+```
+
+### 方法二：手动部署
+
+1. **登录 Cloudflare Dashboard**
+2. 进入 **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**
+3. 选择您的 GitHub 仓库
+4. 配置构建设置：
+   - **Framework preset**: None
+   - **Build command**: `npx quartz build`
+   - **Build output directory**: `public`
+5. 点击 **Save and Deploy**
+
+
+---
+
 ## 📝 本地预览
 
 ```bash
