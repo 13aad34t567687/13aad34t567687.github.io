@@ -18,35 +18,35 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local",
       cdnCaching: true,
       typography: {
-        header: "Noto Sans SC",
-        body: "Noto Sans SC",
+        header: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+        body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
         code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
-          light: "#fafbfc",
-          lightgray: "#f0f4f8",
-          gray: "#64748b",
-          darkgray: "#334155",
-          dark: "#0f172a",
-          secondary: "#0ea5e9",
-          tertiary: "#10b981",
-          highlight: "rgba(14, 165, 233, 0.1)",
-          textHighlight: "rgba(251, 191, 36, 0.4)",
+          light: "#faf8f8",
+          lightgray: "#e5e5e5",
+          gray: "#b8b8b8",
+          darkgray: "#4e4e4e",
+          dark: "#2b2b2b",
+          secondary: "#284b63",
+          tertiary: "#84a59d",
+          highlight: "rgba(143, 159, 169, 0.15)",
+          textHighlight: "#fff23688",
         },
         darkMode: {
-          light: "#000000",
-          lightgray: "#0a0a0a",
-          gray: "#888888",
-          darkgray: "#e0e0e0",
+          light: "#000000", // Absolute Black
+          lightgray: "#1c1c1e", // Apple Dark Gray
+          gray: "#646464",
+          darkgray: "#d4d4d4",
           dark: "#ffffff",
-          secondary: "#00d9ff",
-          tertiary: "#00ff88",
-          highlight: "rgba(0, 217, 255, 0.15)",
-          textHighlight: "rgba(255, 215, 0, 0.3)",
+          secondary: "#2997ff", // Apple System Blue
+          tertiary: "#30d158", // Apple System Green
+          highlight: "rgba(41, 151, 255, 0.15)",
+          textHighlight: "rgba(41, 151, 255, 0.2)",
         },
       },
     },
@@ -87,7 +87,7 @@ const config: QuartzConfig = {
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
       // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // Plugin.CustomOgImages(),
     ],
   },
 }
