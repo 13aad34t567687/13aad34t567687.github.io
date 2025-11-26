@@ -18,35 +18,35 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "local",
+      fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
-        body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+        header: "Libre Baskerville",
+        body: "Inter",
         code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#FBFBFA", // Warm Paper
+          lightgray: "#F0F0F0",
+          gray: "#B0B0B0",
+          darkgray: "#4A4A4A",
+          dark: "#2D2D2D", // Charcoal
+          secondary: "#D97757", // Burnt Orange / Terracotta
+          tertiary: "#E08E79",
+          highlight: "rgba(217, 119, 87, 0.1)",
+          textHighlight: "rgba(217, 119, 87, 0.2)",
         },
         darkMode: {
-          light: "#000000", // Absolute Black
-          lightgray: "#1c1c1e", // Apple Dark Gray
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ffffff",
-          secondary: "#2997ff", // Apple System Blue
-          tertiary: "#30d158", // Apple System Green
-          highlight: "rgba(41, 151, 255, 0.15)",
-          textHighlight: "rgba(41, 151, 255, 0.2)",
+          light: "#1A1918", // Warm Slate
+          lightgray: "#2A2928",
+          gray: "#888888",
+          darkgray: "#C0C0C0",
+          dark: "#EBEAEC", // Off-white
+          secondary: "#D97757", // Burnt Orange / Terracotta (kept consistent for brand)
+          tertiary: "#E08E79",
+          highlight: "rgba(217, 119, 87, 0.15)",
+          textHighlight: "rgba(217, 119, 87, 0.2)",
         },
       },
     },

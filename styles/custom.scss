@@ -1,34 +1,34 @@
 @use "./base.scss";
 
 /* ==========================================
-   🍎 VISION OS MASTERPIECE - 空间计算美学
-   "Designed by Apple in California"
+   🖋️ CLAUDE AESTHETICS - 人文智性主题
+   "Warm, Editorial, Intelligent"
    ========================================== */
 
 /* === 1. 核心排版 (Typography) === */
 :root {
-  --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-header: 'Libre Baskerville', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
 
   /* 颜色变量映射 */
-  --bg-deep: #000000;
-  --glass-surface: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-highlight: rgba(255, 255, 255, 0.08);
-  --text-primary: rgba(255, 255, 255, 0.96);
-  --text-secondary: rgba(255, 255, 255, 0.64);
-  --accent-blue: #2997ff;
-  --accent-purple: #bf5af2;
-  --accent-cyan: #32ade6;
+  --bg-paper: #FBFBFA;
+  --bg-slate: #1A1918;
+  --text-charcoal: #2D2D2D;
+  --text-offwhite: #EBEAEC;
+  --accent-terracotta: #D97757;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-subtle-dark: rgba(255, 255, 255, 0.08);
 }
 
 body {
-  font-family: var(--font-system);
-  background-color: var(--bg-deep);
-  color: var(--text-primary);
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  color: var(--dark);
+  background-color: var(--light);
+  line-height: 1.7;
+  /* 增加行高，提升阅读体验 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
 }
 
 h1,
@@ -37,235 +37,137 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-header);
   font-weight: 700;
-  letter-spacing: -0.022em;
-  /* Apple-style tight tracking */
-  color: var(--text-primary);
+  color: var(--dark);
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: 3.5rem;
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
-/* === 2. 极光深空背景 (Aurora Deep Space) === */
-:root[saved-theme="dark"] body::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(41, 151, 255, 0.08), transparent 40%),
-    radial-gradient(circle at 20% 30%, rgba(191, 90, 242, 0.06), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(50, 173, 230, 0.06), transparent 40%);
-  filter: blur(80px);
-  animation: auroraMove 30s ease-in-out infinite alternate;
-  z-index: -2;
-  pointer-events: none;
+/* === 2. 极简布局 (Minimalist Layout) === */
+.page {
+  max-width: 800px;
+  /* 限制内容宽度，模拟书籍排版 */
+  margin: 0 auto;
+  padding: 4rem 2rem;
 }
 
-@keyframes auroraMove {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  100% {
-    transform: translate(-5%, -5%) scale(1.1);
-  }
+/* 去除所有背景装饰，回归纯粹 */
+body::before,
+body::after {
+  display: none;
 }
 
-/* 噪点纹理 (Film Grain) - 增加质感 */
-:root[saved-theme="dark"] body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: -1;
+/* === 3. 优雅组件 (Elegant Components) === */
+
+/* 卡片 - 极简边框，无阴影 */
+article,
+.card {
+  background: transparent;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 0.2s ease;
+  box-shadow: none;
 }
 
-/* === 3. 光学玻璃材质 (Optical Glass Material) === */
 :root[saved-theme="dark"] article,
-:root[saved-theme="dark"] .card,
-:root[saved-theme="dark"] .sidebar-item {
-  background: var(--glass-surface);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  /* Apple rounded corners */
-  padding: 2.5rem;
-  box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  /* Inner specular highlight */
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  /* Apple "Fluid" curve */
-  position: relative;
-  overflow: hidden;
+:root[saved-theme="dark"] .card {
+  border-color: var(--border-subtle-dark);
+  background: rgba(255, 255, 255, 0.02);
 }
 
-/* 悬停态：光照反射 (Specular Reflection) */
-:root[saved-theme="dark"] article:hover {
-  transform: scale(1.02) translateY(-5px);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+article:hover {
+  border-color: var(--secondary);
 }
 
-/* 悬停时的光斑移动效果 */
-:root[saved-theme="dark"] article::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.08),
-      transparent);
-  transform: skewX(-25deg);
-  transition: left 0.8s ease;
-  pointer-events: none;
-}
-
-:root[saved-theme="dark"] article:hover::before {
-  left: 150%;
-}
-
-/* === 4. 交互组件 (Interactive Elements) === */
-
-/* 链接 - 霓虹下划线 */
+/* 链接 - 优雅的下划线 */
 a {
-  color: var(--accent-blue);
+  color: var(--secondary);
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
   border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
 a:hover {
-  color: #5ac8fa;
-  text-shadow: 0 0 15px rgba(90, 200, 250, 0.6);
-  border-bottom-color: rgba(90, 200, 250, 0.5);
+  border-bottom-color: var(--secondary);
 }
 
-/* 标签 - 胶囊样式 */
+a.internal {
+  background: rgba(217, 119, 87, 0.1);
+  padding: 0 0.2em;
+  border-radius: 4px;
+  border-bottom: none;
+}
+
+a.internal:hover {
+  background: rgba(217, 119, 87, 0.2);
+}
+
+/* 标签 - 朴素风格 */
 .tag {
-  font-family: var(--font-system);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.4em 1em;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.2em 0.8em;
+  border-radius: 4px;
+  background: var(--lightgray);
+  color: var(--darkgray);
+  border: none;
+  font-weight: 500;
 }
 
-.tag:hover {
-  background: rgba(41, 151, 255, 0.2);
-  border-color: rgba(41, 151, 255, 0.4);
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(41, 151, 255, 0.3);
-}
-
-/* 代码块 - 深邃背景 */
-pre {
-  background: rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 1.5rem;
-}
-
-/* 引用块 - 极简线条 */
-blockquote {
-  border-left: 2px solid var(--accent-blue);
-  background: linear-gradient(90deg, rgba(41, 151, 255, 0.05) 0%, transparent 100%);
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  color: var(--text-secondary);
-  font-style: italic;
-}
-
-/* 按钮 - 玻璃态按钮 */
-button,
-.button {
+:root[saved-theme="dark"] .tag {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 999px;
-  padding: 0.8rem 2rem;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  color: var(--light);
 }
 
-button:hover,
-.button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+/* 代码块 - 干净整洁 */
+pre {
+  background: var(--lightgray) !important;
+  border-radius: 6px;
+  padding: 1.5rem;
+  border: none;
+  font-size: 0.9em;
 }
 
-/* === 5. 滚动条 (Scrollbar) === */
-::-webkit-scrollbar {
-  width: 10px;
+:root[saved-theme="dark"] pre {
+  background: #2A2928 !important;
 }
 
-::-webkit-scrollbar-track {
+/* 引用块 - 侧边线条 */
+blockquote {
+  border-left: 3px solid var(--secondary);
   background: transparent;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--font-header);
+  font-style: italic;
+  color: var(--darkgray);
+  font-size: 1.1em;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+/* 列表 - 增加间距 */
+ul,
+ol {
+  padding-left: 1.5rem;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
 }
 
-/* === 6. 页面入场动画 (Page Entrance) === */
-.page {
-  animation: pageFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes pageFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98) translateY(20px);
-    filter: blur(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0);
-  }
-}
-
-/* 移动端适配 */
+/* === 4. 移动端适配 === */
 @media (max-width: 768px) {
-  :root[saved-theme="dark"] article {
-    padding: 1.5rem;
-    border-radius: 20px;
+  .page {
+    padding: 2rem 1.5rem;
   }
 
   h1 {
