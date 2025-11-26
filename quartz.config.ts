@@ -21,9 +21,9 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Libre Baskerville",
-        body: "Inter",
-        code: "JetBrains Mono",
+        header: "Noto Sans SC",
+        body: "Noto Sans SC",
+        code: "Fira Code",
       },
       colors: {
         lightMode: {
