@@ -43,7 +43,7 @@ const config: QuartzConfig = {
           gray: "#888888",
           darkgray: "#C0C0C0",
           dark: "#EBEAEC", // Off-white
-          secondary: "#D97757", // Burnt Orange / Terracotta (kept consistent for brand)
+          secondary: "#D97757", // Burnt Orange / Terracotta
           tertiary: "#E08E79",
           highlight: "rgba(217, 119, 87, 0.15)",
           textHighlight: "rgba(217, 119, 87, 0.2)",
@@ -86,7 +86,6 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
       // Plugin.CustomOgImages(),
     ],
   },
