@@ -20,213 +20,147 @@
 
   /* 字体变量 (User Specified) */
   --titleFont: "Noto Sans SC", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --headerFont: "Noto Sans SC", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --bodyFont: "Noto Sans SC", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --codeFont: "Fira Code", ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
-}
 
-/* Dark Mode Overrides (Keeping consistent with Warm Editorial theme but mapping to new vars if needed) */
-:root[saved-theme="dark"] {
-  --light: #1A1918;
-  --lightgray: #2A2928;
-  --gray: #888888;
-  --darkgray: #C0C0C0;
-  --dark: #EBEAEC;
-  --secondary: #D97757;
-  --tertiary: #E08E79;
-  --highlight: rgba(217, 119, 87, 0.15);
-  --textHighlight: rgba(217, 119, 87, 0.2);
-}
+  /* === 4. 组件样式 (Component Styles) === */
 
-/* === 2. 全局样式 (Global Styles) === */
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: none;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  unicode-bidi: isolate;
-}
-
-/* 选中态 */
-::selection {
-  background: color-mix(in srgb, var(--tertiary) 60%, #fff0);
-  color: var(--darkgray);
-}
-
-/* 标题 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--headerFont);
-  font-weight: 700;
-  color: var(--dark);
-  margin-top: 2em;
-  margin-bottom: 0.8em;
-  letter-spacing: -0.01em;
-}
-
-h1 {
-  font-size: 2.8rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-/* === 3. 极简布局 (Minimalist Layout) === */
-.page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
-
-body::before,
-body::after {
-  display: none;
-}
-
-/* === 4. 组件样式 (Component Styles) === */
-
-/* 卡片 */
-article,
-.card {
-  background: transparent;
-  border: 1px solid var(--lightgray);
-  border-radius: 8px;
-  padding: 2rem;
-  transition: border-color 0.2s ease;
-  box-shadow: none;
-}
-
-:root[saved-theme="dark"] article,
-:root[saved-theme="dark"] .card {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-article:hover {
-  border-color: var(--secondary);
-}
-
-/* 链接 */
-a {
-  color: var(--secondary);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-a:hover {
-  border-bottom-color: var(--secondary);
-}
-
-a.internal {
-
-  /* 代码块 */
-  pre {
-    font-family: var(--codeFont);
-    background: var(--lightgray) !important;
-    border-radius: 6px;
-    padding: 1.5rem;
-    border: none;
-    font-size: 0.9em;
-  }
-
-  :root[saved-theme="dark"] pre {
-    background: #2A2928 !important;
-  }
-
-  /* 引用块 */
-  blockquote {
-    border-left: 3px solid var(--secondary);
-    background: transparent;
-    padding: 0.5rem 0 0.5rem 1.5rem;
-    margin: 2rem 0;
-    font-family: var(--headerFont);
-    font-style: italic;
-    color: var(--darkgray);
-    font-size: 1.1em;
-  }
-
-  /* 列表 */
-  ul,
-  ol {
-    padding-left: 1.5rem;
-  }
-
-  li {
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem;
-  }
-
-  /* === 5. 优雅显现动画 (Elegant Text Reveal) === */
-  @keyframes revealUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* 确保动画只在页面加载时播放一次 */
-  .center,
-  .sidebar {
-    position: relative;
-  }
-
-  h1,
-  .page-title {
-    animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    will-change: transform, opacity;
-  }
-
-  .tags,
-  .content-meta {
-    animation: revealUp 0.8s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    opacity: 0;
-    will-change: transform, opacity;
-  }
-
+  /* 卡片 */
   article,
-  .popover-hint {
-    animation: revealUp 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    opacity: 0;
-    will-change: transform, opacity;
+  .card {
+    background: transparent;
+    border: 1px solid var(--lightgray);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.2s ease;
+    box-shadow: none;
   }
 
-  .sidebar-left,
-  .sidebar-right {
-    animation: revealUp 1s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    opacity: 0;
-    will-change: transform, opacity;
+  :root[saved-theme="dark"] article,
+  :root[saved-theme="dark"] .card {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  article:hover {
+    border-color: var(--secondary);
+  }
 
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-      opacity: 1 !important;
+  /* 链接 */
+  a {
+    color: var(--secondary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  a:hover {
+    border-bottom-color: var(--secondary);
+  }
+
+  a.internal {
+
+    /* 代码块 */
+    pre {
+      font-family: var(--codeFont);
+      background: var(--lightgray) !important;
+      border-radius: 6px;
+      padding: 1.5rem;
+      border: none;
+      font-size: 0.9em;
     }
-  }
 
-  /* === 6. 移动端适配 === */
-  @media (max-width: 768px) {
-    .page {
-      padding: 2rem 1.5rem;
+    :root[saved-theme="dark"] pre {
+      background: #2A2928 !important;
     }
 
-    h1 {
-      font-size: 2.2rem;
+    /* 引用块 */
+    blockquote {
+      border-left: 3px solid var(--secondary);
+      background: transparent;
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      margin: 2rem 0;
+      font-family: var(--headerFont);
+      font-style: italic;
+      color: var(--darkgray);
+      font-size: 1.1em;
     }
-  }
+
+    /* 列表 */
+    ul,
+    ol {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      padding-left: 0.5rem;
+    }
+
+    /* === 5. 优雅显现动画 (Elegant Text Reveal) === */
+    @keyframes revealUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 确保动画只在页面加载时播放一次 */
+    .center,
+    .sidebar {
+      position: relative;
+    }
+
+    h1,
+    .page-title {
+      animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      will-change: transform, opacity;
+    }
+
+    .tags,
+    .content-meta {
+      animation: revealUp 0.8s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    article,
+    .popover-hint {
+      animation: revealUp 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .sidebar-left,
+    .sidebar-right {
+      animation: revealUp 1s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        opacity: 1 !important;
+      }
+    }
+
+    /* === 6. 移动端适配 === */
+    @media (max-width: 768px) {
+      .page {
+        padding: 2rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
