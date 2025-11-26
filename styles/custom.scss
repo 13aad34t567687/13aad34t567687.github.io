@@ -123,136 +123,110 @@ a:hover {
 }
 
 a.internal {
-  background: var(--highlight);
-  padding: 0 0.2em;
-  border-radius: 4px;
-  border-bottom: none;
-}
 
-a.internal:hover {
-  background: var(--textHighlight);
-}
+  /* 代码块 */
+  pre {
+    font-family: var(--codeFont);
+    background: var(--lightgray) !important;
+    border-radius: 6px;
+    padding: 1.5rem;
+    border: none;
+    font-size: 0.9em;
+  }
 
-/* 标签 */
-.tag {
-  font-family: var(--bodyFont);
-  font-size: 0.85rem;
-  padding: 0.2em 0.8em;
-  border-radius: 4px;
-  background: var(--lightgray);
-  color: var(--darkgray);
-  border: none;
-  font-weight: 500;
-}
+  :root[saved-theme="dark"] pre {
+    background: #2A2928 !important;
+  }
 
-:root[saved-theme="dark"] .tag {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--light);
-}
+  /* 引用块 */
+  blockquote {
+    border-left: 3px solid var(--secondary);
+    background: transparent;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2rem 0;
+    font-family: var(--headerFont);
+    font-style: italic;
+    color: var(--darkgray);
+    font-size: 1.1em;
+  }
 
-/* 代码块 */
-pre {
-  font-family: var(--codeFont);
-  background: var(--lightgray) !important;
-  border-radius: 6px;
-  padding: 1.5rem;
-  border: none;
-  font-size: 0.9em;
-}
+  /* 列表 */
+  ul,
+  ol {
+    padding-left: 1.5rem;
+  }
 
-:root[saved-theme="dark"] pre {
-  background: #2A2928 !important;
-}
+  li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+  }
 
-/* 引用块 */
-blockquote {
-  border-left: 3px solid var(--secondary);
-  background: transparent;
-  padding: 0.5rem 0 0.5rem 1.5rem;
-  margin: 2rem 0;
-  font-family: var(--headerFont);
-  font-style: italic;
-  color: var(--darkgray);
-  font-size: 1.1em;
-}
+  /* === 5. 优雅显现动画 (Elegant Text Reveal) === */
+  @keyframes revealUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
 
-/* 列表 */
-ul,
-ol {
-  padding-left: 1.5rem;
-}
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-li {
-  margin-bottom: 0.5rem;
-  padding-left: 0.5rem;
-}
+  /* 确保动画只在页面加载时播放一次 */
+  .center,
+  .sidebar {
+    position: relative;
+  }
 
-/* === 5. 优雅显现动画 (Elegant Text Reveal) === */
-@keyframes revealUp {
-  from {
+  h1,
+  .page-title {
+    animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .tags,
+  .content-meta {
+    animation: revealUp 0.8s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     opacity: 0;
-    transform: translateY(20px);
+    will-change: transform, opacity;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 确保动画只在页面加载时播放一次 */
-.center,
-.sidebar {
-  position: relative;
-}
-
-h1,
-.page-title {
-  animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  will-change: transform, opacity;
-}
-
-.tags,
-.content-meta {
-  animation: revealUp 0.8s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-article,
-.popover-hint {
-  animation: revealUp 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-.sidebar-left,
-.sidebar-right {
-  animation: revealUp 1s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-    opacity: 1 !important;
-  }
-}
-
-/* === 6. 移动端适配 === */
-@media (max-width: 768px) {
-  .page {
-    padding: 2rem 1.5rem;
+  article,
+  .popover-hint {
+    animation: revealUp 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
   }
 
-  h1 {
-    font-size: 2.2rem;
+  .sidebar-left,
+  .sidebar-right {
+    animation: revealUp 1s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
   }
-}
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+      opacity: 1 !important;
+    }
+  }
+
+  /* === 6. 移动端适配 === */
+  @media (max-width: 768px) {
+    .page {
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+    }
+  }
