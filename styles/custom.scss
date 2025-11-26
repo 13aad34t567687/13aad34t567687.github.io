@@ -1,25 +1,22 @@
 @use "./base.scss";
 
 /* ==========================================
-   🎨 ULTRA 酷炫深黑主题 + 强化动画
+   🎨 SAMSY.NINJA 风格 - 超炫3D动画主题
+   灵感来源: https://samsy.ninja/
    ========================================== */
 
 /* === 全局设置 === */
-html,
-body {
+html {
   scroll-behavior: smooth;
 }
 
-* {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-/* 🌟=== 动态星空背景（明显可见）=== */
-:root[saved-theme="dark"] body {
-  position: relative;
-  background: #000000 !important;
-}
-
+/* 🌌 === 动态3D背景粒子场 === */
 :root[saved-theme="dark"] body::before {
   content: '';
   position: fixed;
@@ -27,151 +24,202 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(0, 217, 255, 0.6) 0px, transparent 2px),
-    radial-gradient(circle at 90% 30%, rgba(0, 255, 136, 0.6) 0px, transparent 2px),
-    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.4) 0px, transparent 1px),
-    radial-gradient(circle at 70% 80%, rgba(0, 217, 255, 0.5) 0px, transparent 2px),
-    radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.5) 0px, transparent 2px),
-    radial-gradient(circle at 20% 90%, rgba(255, 255, 255, 0.3) 0px, transparent 1px),
-    radial-gradient(circle at 80% 10%, rgba(0, 217, 255, 0.4) 0px, transparent 2px);
-  animation: starTwinkle 4s ease-in-out infinite;
+  background:
+    radial-gradient(ellipse at top, #1a1a2e 0%, #000000 50%),
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(253, 121, 168, 0.3), transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(194, 157, 248, 0.2), transparent 40%);
+  animation: backgroundShift 20s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-@keyframes starTwinkle {
+@keyframes backgroundShift {
 
   0%,
   100% {
-    opacity: 0.6;
+    opacity: 0.8;
+    filter: blur(60px);
   }
 
   50% {
     opacity: 1;
+    filter: blur(80px);
   }
 }
 
-/* 🎬 === 页面进入动画（超明显）=== */
-.page-listing,
-.page>article,
-.page>#quartz-body {
-  animation: slideInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-  opacity: 0;
+/* ⭐ === 漂浮粒子效果 === */
+:root[saved-theme="dark"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 33% 85%, white, transparent),
+    radial-gradient(1px 1px at 75% 45%, white, transparent);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  animation: floatingParticles 15s linear infinite;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
 }
 
-@keyframes slideInUp {
+@keyframes floatingParticles {
+  0% {
+    background-position: 0% 0%;
+    transform: translateY(0);
+  }
+
+  100% {
+    background-position: 100% 100%;
+    transform: translateY(-50px);
+  }
+}
+
+/* 🎭 === 页面容器 === */
+.page {
+  position: relative;
+  z-index: 1;
+  animation: pageReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageReveal {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(40px) scale(0.96);
+    filter: blur(10px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
-/* 💫 === 标题霓虹发光（强化）=== */
-:root[saved-theme="dark"] h1,
-:root[saved-theme="dark"] h2 {
-  color: var(--dark);
+/* 💎 === 玻璃态标题效果 === */
+:root[saved-theme="dark"] h1 {
+  background: linear-gradient(135deg,
+      #667eea 0%,
+      #764ba2 25%,
+      #f093fb 50%,
+      #4facfe 75%,
+      #00f2fe 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 8s ease infinite;
+  font-weight: 900;
+  letter-spacing: -0.03em;
   text-shadow:
-    0 0 20px rgba(0, 217, 255, 1),
-    0 0 40px rgba(0, 217, 255, 0.8),
-    0 0 60px rgba(0, 217, 255, 0.6),
-    0 0 80px rgba(0, 255, 136, 0.4);
-  animation: neonPulse 2s ease-in-out infinite !important;
+    0 0 40px rgba(102, 126, 234, 0.5),
+    0 0 80px rgba(118, 75, 162, 0.3);
+  position: relative;
+  display: inline-block;
 }
 
-@keyframes neonPulse {
+@keyframes gradientFlow {
 
   0%,
   100% {
-    text-shadow:
-      0 0 20px rgba(0, 217, 255, 1),
-      0 0 40px rgba(0, 217, 255, 0.8);
+    background-position: 0% 50%;
   }
 
   50% {
-    text-shadow:
-      0 0 30px rgba(0, 255, 136, 1),
-      0 0 60px rgba(0, 255, 136, 0.8),
-      0 0 90px rgba(0, 255, 136, 0.6);
+    background-position: 100% 50%;
   }
 }
 
-/* 🎴 === 卡片超炫3D效果 === */
+:root[saved-theme="dark"] h2 {
+  background: linear-gradient(120deg, #f093fb, #4facfe);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s ease infinite;
+  font-weight: 700;
+}
+
+:root[saved-theme="dark"] h3 {
+  color: #c9d1d9;
+  font-weight: 600;
+  position: relative;
+}
+
+:root[saved-theme="dark"] h3::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 80%;
+  background: linear-gradient(180deg, #667eea, #764ba2);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+}
+
+/* 🎴 === 现代化卡片设计 === */
 :root[saved-theme="dark"] article,
 :root[saved-theme="dark"] .page>section {
   position: relative;
-  background: #0a0a0a !important;
-  border-radius: 20px;
-  padding: 2rem;
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2.5rem;
   margin: 2rem 0;
-  border: 2px solid #00d9ff;
   box-shadow:
-    0 0 20px rgba(0, 217, 255, 0.5),
-    0 0 40px rgba(0, 217, 255, 0.3),
-    inset 0 0 20px rgba(0, 217, 255, 0.1);
-  transform-style: preserve-3d;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
 :root[saved-theme="dark"] article::before {
   content: '';
   position: absolute;
-  inset: -3px;
-  background: linear-gradient(45deg,
-      #00d9ff 0%,
-      #00ff88 25%,
-      #00d9ff 50%,
-      #00ff88 75%,
-      #00d9ff 100%);
-  border-radius: 20px;
-  z-index: -1;
-  animation: borderFlow 3s linear infinite;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-@keyframes borderFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  100% {
-    background-position: 200% 50%;
-  }
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent);
+  transition: left 0.8s;
 }
 
 :root[saved-theme="dark"] article:hover {
-  transform: translateY(-15px) scale(1.03) rotateX(5deg) !important;
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(102, 126, 234, 0.5);
   box-shadow:
-    0 25px 80px rgba(0, 217, 255, 0.6),
-    0 0 60px rgba(0, 255, 136, 0.4),
-    inset 0 0 30px rgba(0, 217, 255, 0.2) !important;
-  border-color: #00ff88;
+    0 20px 60px rgba(102, 126, 234, 0.3),
+    0 0 40px rgba(118, 75, 162, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 :root[saved-theme="dark"] article:hover::before {
-  opacity: 1;
+  left: 100%;
 }
 
-/* 🔗 === 链接发光效果（强化）=== */
+/* 🔗 === 现代链接效果 === */
 :root[saved-theme="dark"] a {
-  color: #00d9ff;
+  color: #4facfe;
   text-decoration: none;
   position: relative;
-  transition: all 0.3s;
-}
-
-:root[saved-theme="dark"] a:hover {
-  color: #00ff88;
-  text-shadow:
-    0 0 15px rgba(0, 255, 136, 1),
-    0 0 30px rgba(0, 255, 136, 0.8);
-  transform: translateX(5px);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 :root[saved-theme="dark"] a::after {
@@ -181,180 +229,161 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #00d9ff, #00ff88);
-  transform-origin: left;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #4facfe);
+  background-size: 200% 100%;
   transform: scaleX(0);
-  transition: transform 0.3s;
-  box-shadow: 0 0 10px #00d9ff;
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+:root[saved-theme="dark"] a:hover {
+  color: #f093fb;
+  text-shadow: 0 0 20px rgba(240, 147, 251, 0.6);
+  transform: translateX(4px);
 }
 
 :root[saved-theme="dark"] a:hover::after {
   transform: scaleX(1);
+  animation: gradientSlide 1.5s linear infinite;
 }
 
-/* 🎯 === 按钮超级发光 === */
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* 🎯 === 未来感按钮 === */
 :root[saved-theme="dark"] button,
 :root[saved-theme="dark"] .button {
-  background: linear-gradient(135deg, #00d9ff, #00ff88) !important;
-  color: #000 !important;
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   font-weight: 700;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: 50px;
   cursor: pointer;
-  position: relative;
   overflow: hidden;
   box-shadow:
-    0 0 20px rgba(0, 217, 255, 0.8),
-    0 0 40px rgba(0, 217, 255, 0.5);
-  transition: all 0.3s;
+    0 4px 15px rgba(102, 126, 234, 0.4),
+    0 0 20px rgba(118, 75, 162, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
 }
 
 :root[saved-theme="dark"] button::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.5) 50%,
-      transparent 70%);
-  animation: buttonShine 2s infinite;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
 }
 
-@keyframes buttonShine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-
-  100% {
-    transform: translateX(100%) rotate(45deg);
-  }
+:root[saved-theme="dark"] button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
 }
 
 :root[saved-theme="dark"] button:hover {
-  transform: translateY(-5px) scale(1.1);
+  transform: translateY(-4px) scale(1.05);
   box-shadow:
-    0 0 40px rgba(0, 217, 255, 1),
-    0 0 80px rgba(0, 255, 136, 0.8),
-    0 10px 40px rgba(0, 217, 255, 0.6);
+    0 12px 40px rgba(102, 126, 234, 0.6),
+    0 0 40px rgba(118, 75, 162, 0.4);
 }
 
-/* 🏷️ === 标签霓虹效果 === */
+:root[saved-theme="dark"] button:hover::before {
+  opacity: 1;
+}
+
+:root[saved-theme="dark"] button:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+:root[saved-theme="dark"] button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* 🏷️ === 现代标签 === */
 :root[saved-theme="dark"] .tag,
 :root[saved-theme="dark"] .tags a {
-  background: linear-gradient(135deg, #00d9ff, #00ff88);
-  color: #000 !important;
-  padding: 0.5rem 1.2rem;
-  border-radius: 20px;
   display: inline-block;
-  margin: 0.3rem;
+  padding: 0.6rem 1.4rem;
+  margin: 0.4rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: #4facfe !important;
+  border-radius: 20px;
+  font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
 }
 
 :root[saved-theme="dark"] .tag:hover,
 :root[saved-theme="dark"] .tags a:hover {
-  transform: translateY(-5px) scale(1.15) rotate(3deg);
+  transform: translateY(-4px) scale(1.08);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+  border-color: rgba(102, 126, 234, 0.6);
   box-shadow:
-    0 0 30px rgba(0, 217, 255, 1),
-    0 0 60px rgba(0, 255, 136, 0.8);
+    0 8px 25px rgba(102, 126, 234, 0.4),
+    0 0 20px rgba(102, 126, 234, 0.3);
+  color: #f093fb !important;
 }
 
-/* 📜 === 滚动条霓虹 === */
+/* 📜 === 现代滚动条 === */
 :root[saved-theme="dark"] ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 :root[saved-theme="dark"] ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: rgba(26, 26, 46, 0.6);
 }
 
 :root[saved-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00d9ff, #00ff88);
+  background: linear-gradient(180deg, #667eea, #764ba2);
   border-radius: 10px;
-  box-shadow:
-    0 0 10px rgba(0, 217, 255, 0.8),
-    inset 0 0 10px rgba(0, 217, 255, 0.5);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
 }
 
 :root[saved-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  box-shadow:
-    0 0 20px rgba(0, 255, 136, 1),
-    inset 0 0 20px rgba(0, 255, 136, 0.8);
+  background: linear-gradient(180deg, #764ba2, #f093fb);
+  box-shadow: 0 0 20px rgba(240, 147, 251, 0.8);
 }
 
-/* 🌠 === 流星效果 === */
-:root[saved-theme="dark"]::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00d9ff, transparent);
-  box-shadow: 0 0 20px #00d9ff;
-  animation: shootingStar 5s linear infinite;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-@keyframes shootingStar {
-  0% {
-    transform: translate(-200px, -200px) rotate(-45deg);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(100vw, 100vh) rotate(-45deg);
-    opacity: 0;
-  }
-}
-
-/* 💎 === 侧边栏发光 === */
-:root[saved-theme="dark"] .left-sidebar>*,
-:root[saved-theme="dark"] .right-sidebar>* {
-  background: #0a0a0a;
-  border: 1px solid #00d9ff;
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow:
-    0 0 15px rgba(0, 217, 255, 0.3),
-    inset 0 0 10px rgba(0, 217, 255, 0.1);
-  transition: all 0.3s;
-}
-
-:root[saved-theme="dark"] .left-sidebar>*:hover,
-:root[saved-theme="dark"] .right-sidebar>*:hover {
-  border-color: #00ff88;
-  box-shadow:
-    0 0 30px rgba(0, 255, 136, 0.6),
-    inset 0 0 20px rgba(0, 255, 136, 0.2);
-  transform: translateY(-5px);
-}
-
-/* 💻 === 代码块霓虹 === */
+/* 💻 === 代码块现代化 === */
 :root[saved-theme="dark"] pre {
-  background: #0a0a0a !important;
-  border: 2px solid #00d9ff;
-  border-radius: 15px;
+  background: rgba(26, 26, 46, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 16px;
   padding: 1.5rem;
   box-shadow:
-    0 0 20px rgba(0, 217, 255, 0.4),
-    inset 0 0 15px rgba(0, 217, 255, 0.1);
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
+  overflow-x: auto;
 }
 
 :root[saved-theme="dark"] pre::before {
@@ -364,65 +393,108 @@ body {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, #00d9ff, #00ff88);
-  box-shadow: 0 0 15px #00d9ff;
-  animation: codeGlow 2s ease-in-out infinite;
+  background: linear-gradient(180deg, #667eea, #764ba2, #f093fb);
+  border-radius: 4px 0 0 4px;
 }
 
-@keyframes codeGlow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px #00d9ff;
-  }
-
-  50% {
-    box-shadow: 0 0 30px #00ff88;
-  }
-}
-
-/* 📖 === 引用块发光 === */
+/* 📖 === 引用块玻璃态 === */
 :root[saved-theme="dark"] blockquote {
-  background: rgba(0, 217, 255, 0.05);
-  border-left: 4px solid #00d9ff;
+  background: rgba(102, 126, 234, 0.1);
+  backdrop-filter: blur(10px);
+  border-left: 4px solid #667eea;
   padding: 1.5rem 2rem;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 16px 16px 0;
   box-shadow:
-    0 0 20px rgba(0, 217, 255, 0.3),
-    inset 4px 0 15px rgba(0, 217, 255, 0.2);
+    0 4px 20px rgba(102, 126, 234, 0.2),
+    inset 4px 0 10px rgba(102, 126, 234, 0.1);
+  margin: 2rem 0;
   position: relative;
 }
 
-:root[saved-theme="dark"] blockquote::before {
-  content: '"';
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  font-size: 6rem;
-  color: #00d9ff;
-  opacity: 0.3;
-  text-shadow: 0 0 20px #00d9ff;
+/* 💠 === 侧边栏玻璃态 === */
+:root[saved-theme="dark"] .left-sidebar>*,
+:root[saved-theme="dark"] .right-sidebar>* {
+  background: rgba(26, 26, 46, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 🎨 === 输入框霓虹 === */
+:root[saved-theme="dark"] .left-sidebar>*:hover,
+:root[saved-theme="dark"] .right-sidebar>*:hover {
+  transform: translateY(-5px);
+  border-color: rgba(102, 126, 234, 0.4);
+  box-shadow:
+    0 12px 40px rgba(102, 126, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 🎨 === 输入框现代化 === */
 :root[saved-theme="dark"] input[type="text"],
 :root[saved-theme="dark"] input[type="search"] {
-  background: #0a0a0a !important;
-  border: 2px solid #00d9ff !important;
-  color: #fff !important;
-  padding: 0.8rem 1.2rem;
-  border-radius: 25px;
-  box-shadow:
-    0 0 10px rgba(0, 217, 255, 0.3),
-    inset 0 0 10px rgba(0, 217, 255, 0.1);
-  transition: all 0.3s;
+  background: rgba(26, 26, 46, 0.6) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  padding: 0.9rem 1.3rem;
+  border-radius: 50px;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 :root[saved-theme="dark"] input:focus {
-  border-color: #00ff88 !important;
+  border-color: rgba(102, 126, 234, 0.6) !important;
   box-shadow:
-    0 0 30px rgba(0, 255, 136, 0.8),
-    inset 0 0 20px rgba(0, 255, 136, 0.2) !important;
+    0 0 0 3px rgba(102, 126, 234, 0.2),
+    0 0 20px rgba(102, 126, 234, 0.3),
+    inset 0 2px 10px rgba(0, 0, 0, 0.3) !important;
   outline: none;
-  transform: scale(1.05);
+  transform: scale(1.02);
+}
+
+/* 🌟 === 光标跟随效果（装饰性）=== */
+:root[saved-theme="dark"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="6" fill="%23667eea" opacity="0.3"/></svg>'), auto;
+}
+
+/* ✨ === 闪烁星星装饰 === */
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 🎭 === 页面加载动画 === */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* 📱 === 响应式优化 === */
+@media (max-width: 768px) {
+  :root[saved-theme="dark"] article {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  :root[saved-theme="dark"] h1 {
+    font-size: 2.5rem;
+  }
 }
