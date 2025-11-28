@@ -35,6 +35,8 @@ import ParticleFloating from "./ParticleFloating"
 import FluidCursor from "./FluidCursor"
 import CursorEffect from "./CursorEffect"
 import ProfileHero from "./ProfileHero"
+import ConstellationBackground from "./ConstellationBackground"
+import ReadingProgress from "./ReadingProgress"
 
 
 export {
@@ -74,4 +76,6 @@ export {
   FluidCursor,
   CursorEffect,
   ProfileHero,
+  ConstellationBackground,
+  ReadingProgress,
 }

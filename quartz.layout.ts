@@ -7,6 +7,7 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   afterBody: [
     Component.ParticleFloating(),
+    Component.ConstellationBackground(),
     Component.CursorEffect(),
   ],
   footer: Component.Footer({
@@ -49,8 +50,8 @@ export const defaultContentPageLayout: PageLayout = {
     })),
   ],
   right: [
-    Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.Graph(),
     Component.Backlinks(),
   ],
 }

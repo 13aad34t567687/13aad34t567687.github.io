@@ -26,7 +26,7 @@ if (container && ctx) {
             this.vx = (Math.random() - 0.5) * 0.3 // Very slow movement
             this.vy = (Math.random() - 0.5) * 0.3
             this.size = Math.random() * 1.5 + 0.5 // Small particles
-            this.opacity = Math.random() * 0.5 + 0.3 // Subtle opacity
+            this.opacity = Math.random() * 0.1 + 0.1 // Very subtle opacity (0.1-0.2)
         }
 
         update() {
@@ -45,7 +45,11 @@ if (container && ctx) {
 
             // Determine color based on theme
             const isDark = document.documentElement.getAttribute("saved-theme") === "dark"
-            const color = isDark ? `rgba(255, 255, 255, ${this.opacity})` : `rgba(0, 0, 0, ${this.opacity})`
+
+            // Only draw in dark mode
+            if (!isDark) return
+
+            const color = `rgba(255, 255, 255, ${this.opacity})`
 
             ctx.beginPath()
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)

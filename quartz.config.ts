@@ -21,13 +21,13 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Playfair Display",
-        body: "Inter",
+        header: "Noto Sans SC",
+        body: "Noto Sans SC",
         code: "Fira Code",
       },
       colors: {
         lightMode: {
-          light: "#FFFFFF",
+          light: "#fafafa",
           lightgray: "#F5F5F5",
           gray: "#999999",
           darkgray: "#333333",

@@ -95,12 +95,20 @@ if (container && ctx) {
 
         // Determine color based on theme
         const isDark = document.documentElement.getAttribute("saved-theme") === "dark"
-        const color = isDark ? "rgba(255, 255, 255, " : "rgba(0, 0, 0, "
+
+        // Only show in light mode
+        if (isDark) {
+            ctx.clearRect(0, 0, width, height)
+            requestAnimationFrame(animate)
+            return
+        }
+
+        const color = "rgba(40, 90, 40, " // Green for light mode
 
         // Update and draw particles
         particles.forEach(p => {
             p.update()
-            p.draw(color + "0.8)")
+            p.draw(color + "0.15)") // Much lower opacity
         })
 
         // Draw connections
@@ -113,7 +121,7 @@ if (container && ctx) {
                 if (distance < connectionDistance) {
                     const opacity = 1 - distance / connectionDistance
                     ctx.beginPath()
-                    ctx.strokeStyle = color + opacity * 0.2 + ")" // Subtle lines
+                    ctx.strokeStyle = color + opacity * 0.08 + ")" // Very subtle lines
                     ctx.lineWidth = 1
                     ctx.moveTo(particles[i].x, particles[i].y)
                     ctx.lineTo(particles[j].x, particles[j].y)
