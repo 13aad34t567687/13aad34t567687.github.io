@@ -20,10 +20,21 @@ import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
 import Breadcrumbs from "./Breadcrumbs"
-import SmokeBackground from "./SmokeBackground"
+
 import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
+import GhostCursor from "./GhostCursor"
+import AuroraBackground from "./AuroraBackground"
+import ClickSpark from "./ClickSpark"
+import BlurText from "./BlurText"
+import LandingPage from "./pages/LandingPage"
+import ParticlesBackground from "./ParticlesBackground"
+import SplashPage from "./SplashPage"
+import ParticleFloating from "./ParticleFloating"
+import FluidCursor from "./FluidCursor"
+import CursorEffect from "./CursorEffect"
+import ProfileHero from "./ProfileHero"
 
 
 export {
@@ -52,5 +63,15 @@ export {
   Comments,
   Flex,
   ConditionalRender,
-
+  GhostCursor,
+  AuroraBackground,
+  ClickSpark,
+  BlurText,
+  LandingPage,
+  ParticlesBackground,
+  SplashPage,
+  ParticleFloating,
+  FluidCursor,
+  CursorEffect,
+  ProfileHero,
 }

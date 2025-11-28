@@ -5,7 +5,10 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [],
+  afterBody: [
+    Component.ParticleFloating(),
+    Component.CursorEffect(),
+  ],
   footer: Component.Footer({
     links: {
       "GitHub": "https://github.com/your-username",
@@ -18,6 +21,7 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
+    Component.SplashPage(), // 全屏引导页
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.ContentMeta(),

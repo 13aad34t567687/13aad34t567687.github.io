@@ -14,39 +14,39 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: null,
     locale: "zh-CN",
-    baseUrl: "your-domain.com",
+    baseUrl: "13aad34t567687.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Noto Sans SC",
-        body: "Noto Sans SC",
+        header: "Playfair Display",
+        body: "Inter",
         code: "Fira Code",
       },
       colors: {
         lightMode: {
-          light: "#FBFBFA", // Warm Paper
-          lightgray: "#F0F0F0",
-          gray: "#B0B0B0",
-          darkgray: "#4A4A4A",
-          dark: "#2D2D2D", // Charcoal
-          secondary: "#D97757", // Burnt Orange / Terracotta
-          tertiary: "#E08E79",
-          highlight: "rgba(217, 119, 87, 0.1)",
-          textHighlight: "rgba(217, 119, 87, 0.2)",
+          light: "#FFFFFF",
+          lightgray: "#F5F5F5",
+          gray: "#999999",
+          darkgray: "#333333",
+          dark: "#000000",
+          secondary: "#000000",
+          tertiary: "#666666",
+          highlight: "rgba(0, 0, 0, 0.05)",
+          textHighlight: "rgba(0, 0, 0, 0.1)",
         },
         darkMode: {
-          light: "#1A1918", // Warm Slate
-          lightgray: "#2A2928",
-          gray: "#888888",
-          darkgray: "#C0C0C0",
-          dark: "#EBEAEC", // Off-white
-          secondary: "#D97757", // Burnt Orange / Terracotta
-          tertiary: "#E08E79",
-          highlight: "rgba(217, 119, 87, 0.15)",
-          textHighlight: "rgba(217, 119, 87, 0.2)",
+          light: "#0A0A0A",
+          lightgray: "#1A1A1A",
+          gray: "#666666",
+          darkgray: "#CCCCCC",
+          dark: "#FFFFFF",
+          secondary: "#FFFFFF",
+          tertiary: "#999999",
+          highlight: "rgba(255, 255, 255, 0.05)",
+          textHighlight: "rgba(255, 255, 255, 0.1)",
         },
       },
     },

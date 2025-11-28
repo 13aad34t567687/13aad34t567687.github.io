@@ -1,4 +1,5 @@
-const userPref = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
+// Default to dark mode unless user has explicitly set a preference
+const userPref = "dark" // Force dark mode as default
 const currentTheme = localStorage.getItem("theme") ?? userPref
 document.documentElement.setAttribute("saved-theme", currentTheme)
 
